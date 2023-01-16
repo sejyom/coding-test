@@ -8,7 +8,6 @@ class Solution {
 
 
         for(int i=0; i<arr1.length; i++) {
-            //2진수 변환해서 arraylist에 넣기
             arrA.add(Integer.toString(arr1[i], 2));
             arrB.add(Integer.toString(arr2[i], 2));
         }
