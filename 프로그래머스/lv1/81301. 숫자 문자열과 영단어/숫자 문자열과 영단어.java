@@ -15,10 +15,8 @@ class Solution {
             put(9, "nine");
         }};
 
-        for (int i=0; i<map.size(); i++) {
-            if (s.contains(map.get(i))) //map의 i번째 value가 s 안에 있으면
+        for (int i=0; i<map.size(); i++)
                 s = s.replace(map.get(i), String.valueOf(i)); //s의 해당 value값을 숫자로 대체
-        }
 
         return Integer.parseInt(s);
     }
