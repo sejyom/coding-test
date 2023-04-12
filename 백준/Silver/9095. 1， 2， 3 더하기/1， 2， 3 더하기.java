@@ -17,7 +17,6 @@ public class Main {
     }
 
     public static int numOfCases(int num) {
-        int[] arr = {0, 1, 2, 4}; //0:0, 1:1, 2:2, 3:4
 
         if (num==3)
             return 4;
