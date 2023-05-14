@@ -25,11 +25,8 @@ public class Main {
             arr[n][m] = arr[m][n] = 1; //연결
         }
 
-        for (int i = 1; i <= a; i++)
-            check[i] = false;
-
         for (int i = 1; i <= a; i++) {
-            if (!check[i]) { //방문하지 않았으면 탐색
+            if (!check[i]) { //방문하지 않았으면 탐색하기
                 dfs(i);
                 count++;
             }
@@ -48,4 +45,5 @@ public class Main {
             }
         }
     }
+
 }
