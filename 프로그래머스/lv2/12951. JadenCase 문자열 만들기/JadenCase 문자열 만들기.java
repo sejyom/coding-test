@@ -5,16 +5,11 @@ class Solution {
 
         for (int i=0; i<arr.length; i++) {
             try {
-                if (arr[i].equals(" ")) {
-                    sb.append(arr[i]);
-                    continue;
-                }
-                else 
-                    sb.append(String.valueOf(arr[i].charAt(0)).toUpperCase() + arr[i].substring(1).toLowerCase());
+                sb.append(String.valueOf(arr[i].charAt(0)).toUpperCase() + arr[i].substring(1).toLowerCase());
             } catch (Exception e) {
                 sb.append(arr[i].toLowerCase());
             } finally {
-                if (i != arr.length-1 || str.endsWith(" "))
+                if (i != arr.length - 1 || str.endsWith(" "))
                     sb.append(" ");
             }
         }
