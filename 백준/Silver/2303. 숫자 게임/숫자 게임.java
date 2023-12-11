@@ -8,20 +8,21 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        List<Integer> lst = new ArrayList<>();
-        int result = 0;
+        List<Integer> lst;
         int maxNum = 0;
+        int temp = 0;
+        int result = 0;
 
-        for (int n = 0; n < N; n++) {
-            lst.clear();
+        for (int n = 1; n <= N; n++) {
             lst = Arrays.stream(br.readLine().split(" "))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
 
-            maxNum = Math.max(findMaxNum(lst), maxNum);
-
-            if (maxNum <= findMaxNum(lst))
-                result = n + 1;
+            temp = findMaxNum(lst);
+            if (maxNum <= temp) {
+                maxNum = temp;
+                result = n;
+            }
 
         }
 
