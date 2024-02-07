@@ -1,29 +1,44 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
-class Solution {
+public class Solution {
+    public static void main(String[] args) {
+        System.out.println(solution(5, new int[]{2, 4}, new int[]{1, 3, 5}));
+        System.out.println(solution(5, new int[]{2, 4}, new int[]{3}));
+        System.out.println(solution(3, new int[]{3}, new int[]{1}));
+
+    }
     public static int solution(int n, int[] lost, int[] reserve) {
-        List<Integer> lst = Arrays.stream(lost)
-                .boxed().sorted().collect(Collectors.toList());
-        List<Integer> rsv = Arrays.stream(reserve)
-                .boxed().sorted().collect(Collectors.toList());
+        int answer = 0;
+        int notLost = n - lost.length; // 잃어버리지 않은 사람
+        int borrow = 0;
 
-        for (int i = 1; i <= n; i++) {
-            if (lst.contains(i) && rsv.contains(i)) {
-                lst.remove(Integer.valueOf(i));
-                rsv.remove(Integer.valueOf(i));
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
+
+        // 여분을 가지고 온 사람이 잃어버렸을 경우
+        for(int i = 0; i < lost.length; i++){
+            for(int j = 0; j < reserve.length; j++){
+                if(lost[i] == reserve[j]){
+                    borrow++;
+                    reserve[j] = -1; // 학생수가 30명 이하라서 -31부터 줬음 (0으로 주니까 테스트 실패뜸 왜죠)
+                    lost[i] = -3;
+                    break;
+                }
             }
         }
 
-        for (int i = 0; i < rsv.size(); i++) {
-            int r = rsv.get(i);
-            if (lst.contains(r - 1))
-                lst.remove(Integer.valueOf(r - 1));
-            else if (lst.contains(r + 1))
-                lst.remove(Integer.valueOf(r + 1));
+        // 여분이 없는 사람 중 잃어버린 경우
+        for(int i = 0; i < lost.length; i++){
+            for(int j = 0; j < reserve.length; j++){
+                if(lost[i] - 1 == reserve[j] || lost[i] + 1 == reserve[j]){ // 앞 뒤 사람이 여분이 있는지 확인
+                    borrow++;
+                    reserve[j] = 0;
+                    break;
+                }
+            }
         }
 
-        return n - lst.size();
+        answer = borrow + notLost;
+        return answer;
     }
 }
