@@ -5,12 +5,12 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String init = br.readLine();
+
+        System.out.println(solution(init));
         br.close();
-        System.out.println(calculateCycle(init));
-        
     }
 
-    public static int calculateCycle(String init) {
+    public static int solution(String init) {
         int num = Integer.parseInt(init);
         int cnt = 0, temp;
 
@@ -18,7 +18,7 @@ public class Main {
             return 1;
 
         while (true) {
-            if (init.length()==1)
+            if (Integer.parseInt(init) < 10 && init.charAt(0) != '0')
                 init = "0" + init;
 
             temp = init.charAt(0) - '0' + init.charAt(1) - '0';
